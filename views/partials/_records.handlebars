@@ -1,0 +1,27 @@
+{{#if records}}
+<div class="row justify-content-center"><h1>Customer Feedback</h1></div>
+    <table class="table table-striped table-hover">
+        <caption>List of all Feedback</caption>
+        <thead>
+            <tr>
+               <th>User ID</th>
+                <th>Title</th>
+                <th>Details</th>
+                <th>date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each records}}
+            <tr>
+               <td>{{userInfo.name}}</td>
+                <td>{{title}}</td>
+                <td>{{details}}</td>
+                <td>{{date}}<td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+
+{{else}}
+<h2></h2>
+{{/if}}

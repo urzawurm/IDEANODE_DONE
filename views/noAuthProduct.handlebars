@@ -1,0 +1,49 @@
+<style>
+  h1{color: rgba(159, 6, 101, 0.996);
+     font-family: fantasy;
+  }
+  P{font-size: larger;
+    font-family:cursive;
+    font-style: oblique;
+  }
+
+
+  </style>
+
+<body>
+  <div class="row justify-content-center "><h1>Products</h1></div>
+      <div class="row justify-content-center ">
+        {{#each allProduct}}
+        <div class="jumbotron ">
+          <img src="/img/{{productName}}.jpeg" alt="product1" class="img-fluid img-thumbnail">
+          <h3>{{productName}}</h3>
+          <button class="btn btn-outline-secondary btn-sm" data-toggle="collapse" data-target="#productIntroduction1">Product Introduction</button><h3></h3>
+
+          <div id="productIntroduction1" class="collapse border border-light rounded" style="max-width:200px">{{desc}}</div>
+
+          <form action="/users/login" method="get">
+            <div class="d-flex flex-column">
+              <div class="d-flex mb-1 mt-1 align-item-center">
+                <label style="margin-left: 0px; margin-bottom: 0px; margin-right:2px; padding-top: 4px" >{{type}}ML, ${{price}} for each,<br>Pls select the qty:</label>
+                <input type="Number" name="productNum" value="" min="1" max={{qty}} style="width:45px"/>
+              </div>
+              <div>
+                
+              </div>
+            </div>
+            <div class="row" style="margin-left: 0px" >
+              <a href="/users/login" class="btn btn-outline-secondary">Add To Cart</a>
+              <button type="submit" name="productId" value=1 class="btn btn-outline-secondary" id="submit" style="margin-left: 15px">Buy</button>
+            </div>
+          </form>
+          
+      </div>
+      {{/each}}
+  </div>
+  
+{{>_records}}
+</body>
+  
+            
+
+

@@ -1,0 +1,26 @@
+<div class="card card-body mb-2">
+    <p><b>Your Name:</b>{{name}}</p>
+    <p><b>Your Email:</b>{{email}}</p>
+    <p><b>your Avatar:</b></p>
+    <br/>
+    {{#if avatar.data}}
+    <img 
+    src="data:image/{{avatar.contentType}}; base64,{{avatar.data}}" width="50" height="50">
+    <form action="/users/profile?_method=DELETE" method="post">
+    <input type="hidden" name="_method" value="DELETE"/>
+    <input type="submit" class="btn btn-danger btn-block" value="Delete Avatar" />
+    </form>
+    {{else}}
+    No Avatar now.
+    {{/if}}
+    </p>
+    <br/>
+    <form action="/users/profile" enctype="multipart/form-data" method="POST">
+        <div>
+            <label for="avatarUpload" class="form-label">Upload New Image for Avatar</label>
+            <input type="file" id="avatarUpload" name="avatarUpload" class="form-control"/>
+        </div>
+        <br/>
+    <button class="btn btn-primary" type="submit">Upload avatar</button>
+    </form>
+</div>

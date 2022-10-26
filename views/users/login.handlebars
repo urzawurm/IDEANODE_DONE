@@ -1,0 +1,36 @@
+<style>
+P{font-size: larger;
+  font-family:cursive;
+  font-style: oblique;
+}
+
+h3{color: rgba(159, 6, 101, 0.996);
+     font-family: fantasy;
+}
+</style>
+
+<div class="row">
+    <div class="col-md-5 mx-auto">       
+        <h3 class="text-center">Account Login</h3>
+        <form action="/users/login" method="post">
+            <div class="form-group">
+                <label for="emailInput">Email</label>
+                <input 
+                    type="email"
+                    name="emailInput"
+                    class="form-control"
+                    required/>
+            </div>
+            <div class="form-group">
+                <label for="passwordInput">Password</label> {{!-- for="咩名都無所謂" --}}
+                {{!-- passwordInput --}}
+                <input
+                    type="password"
+                    name="password" {{!-- 唔好用passwordInput,用返password--}}
+                    class="form-control"
+                    required/>
+            </div>
+            <button type="submit" class="btn btn-success">Sumbit</button>
+        </form>
+    </div>
+</div>

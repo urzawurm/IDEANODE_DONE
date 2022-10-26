@@ -1,0 +1,9 @@
+{{!--確定user login不成功--}}
+{{#each errors}} {{!-- each=for loop--}}
+<div class="alert alert-danger">{{text}}</div>
+{{else}}
+{{/each}}
+
+{{#if fail_passport}}
+<div class="alert alert-danger">{{fail_passport}}</div>
+{{/if}}

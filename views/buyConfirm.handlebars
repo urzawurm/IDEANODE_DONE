@@ -1,0 +1,114 @@
+
+
+                <div>
+                    <form action="/shoppingCart/buy" method="post">
+                    <table class="table table-striped table-light"><!--striped 班馬--->
+                      <thead class="table table-primary">
+                        <tr>
+                            <th></th>
+                            <td>Customer Information</td>
+                        </tr>
+                      </thead>
+                    </table>
+                    <table class="table table-striped table-light">
+                        <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>Product Name</td>
+                                <td>Quantity </td>
+                                <td>Amount$</td>
+                            </tr>
+                            {{#each items}}
+                            <tr>
+                                <th scope="row"></th>
+                                <td>
+                                    <input type="hidden" name="productId" value={{productId}}>
+                                    <input type="hidden" name="productName" value={{productName}}>
+                                    {{productName}}
+                                </td>
+                                <td>
+                                    <input type="hidden" name="qty" value={{qty}}>
+                                    {{qty}}
+                                </td>
+                                <td>
+                                    <input type="hidden" name="totalPrice" value={{price}}>
+                                    ${{price}}
+                                </td>
+                            </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                    <table class="table table-striped table-light">
+                            <tr>
+                                <th scope="row">2</th>
+                                <td>
+                                    <input type="hidden" name="userName" value={{name}}>
+                                    Receiver: {{name}}
+                                </td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">3</th>
+                                <td>Address:</td>
+                                <td>
+                                    <input type="hidden" name="userAddress" value={{address}}>
+                                    {{address}}
+                                </td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">4</th>
+                                <td>Pickup method
+                                <select id="shipping" name="shipMethod">
+                                    {{#each shipMethod}}
+                                        <option class="option" value={{amount}}>{{name}}</option>
+                                    {{/each}}
+                                </select>
+                                </td>
+                                <td></td>
+                                <td>
+                                    <div id="additional-fee">
+
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="table-primary">
+                                <th scope="row">5</th>
+                                <td>Total Amount</td>
+                                <td></td>
+                                <td>
+                                    <input type="hidden" name="finalAmount" value={{totalAmount}}>
+                                    <div id="final-amount">
+                                        {{totalAmount}}
+                                    </div>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+
+                </div>
+                <div style="display:flex; justify-content: flex-end;">
+                    <button type="submit" class="btn btn-success">Buy!
+                    </button>
+                </div>
+            </div>
+            </form>
+</div>
+
+<script>
+    const selector = document.getElementById('shipping');
+    const additionalFee = document.getElementById('additional-fee');
+    const finalAmount = document.getElementById('final-amount');
+    let newFinalAmount = Number(finalAmount.innerText);
+    additionalFee.innerText = selector.value;
+    finalAmount.innerText = newFinalAmount + Number(selector.value);
+
+    selector.addEventListener('change', function () {
+        if (selector.value) {
+            additionalFee.innerText = selector.value;
+            finalAmount.innerText = newFinalAmount + Number(selector.value);
+        }
+    })
+</script>

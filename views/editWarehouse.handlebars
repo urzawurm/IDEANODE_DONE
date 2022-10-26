@@ -1,0 +1,45 @@
+<h1>Update Warehouse Item</h1>
+<div class="container">
+  <form action="/admin/warehouse/edit/{{warehouseItem._id}}?_method=PUT" method="post">
+    <div class="row justify-content-start">
+      ID:
+        <div>{{warehouseItem.productId}}</div>
+    </div>
+    <div class="row justify-content-start">
+      Product Name:
+        <div>{{warehouseItem.productName}}</div>
+    </div>
+    <div class="row justify-content-start">
+      Product Type:
+      <div class="">{{warehouseItem.type}}</div>
+      ML
+    </div>
+    <div class="row justify-content-start">
+      Quantity:
+      <div class="">{{warehouseItem.qty}}</div>
+        <input 
+        type="Number" 
+        name="qty" 
+        value={{warehouseItem.qty}}
+        autocomplete="off"
+        id="qty-input"
+      />
+    </div>
+    <div class="row justify-content-start">
+      Price:
+      <div class="">{{warehouseItem.price}}$</div>
+        <input 
+        type="Number" 
+        name="price" 
+        value={{warehouseItem.price}}
+        autocomplete="off"
+      />
+    </div>
+    <div class="d-flex">
+      <button type="submit" class="btn btn-danger mt-1 mr-1">update</button>
+      <a href="/admin/warehouse">
+        <div class="btn btn-primary mt-1">Go Back</div>
+      </a>
+    </div>
+   </form>
+</div>

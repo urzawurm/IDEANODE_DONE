@@ -1,0 +1,146 @@
+<style>
+P{font-size: larger;
+  font-family:cursive;
+  font-style: oblique;
+}
+
+h1{color: rgba(159, 6, 101, 0.996);
+     font-family: fantasy;
+}
+.card-bg{
+  background-size: cover;
+  background-position: center center; 
+}
+</style>
+{{#if cartItems}}
+<section>
+  <div class="container mt-5">
+     <h1 class=" text-center mb-4 h1">Shopping Cart</h1>
+     
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header d-flex align-items-end" id="headingOne"></div>
+        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+      {{!-- {{>_shoptable}} --}}
+
+
+            
+            <table id="table">
+              <thead>
+                 <tr>
+                  <th scope="col" width="50"></th>
+                  <th scope="col" width="50"></th>
+                  <th scope="col" width="200">Product Name</th>
+                  <th scope="col" width="100">Quantity</th>
+                  <th scope="col" width="50">Amount</th>
+                </tr>
+              </thead>
+              {{!-- product --}}
+              <tbody id="tbody">
+                {{!-- item 1 --}}
+                {{#each cartItems}}
+                <tr>
+                  <th scope="row">
+                    <form action="/shoppingCart/{{productId}}?_method=Delete" method="post">
+                      <button type="submit" value={{userId}} name="userId" class="btn btn-outline-warning">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
+                          <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
+                        </svg>
+                      </button>
+                    </form>
+                  </th>
+                  <td>
+                    <div class="card border-secondary">
+                      <div 
+                      class="card-body card-bg";>
+                      <img src="/img/{{productName}}.jpeg" width="100">
+                      </div>
+                    </div>
+                  <td>
+                    <input type="hidden" name="productId" value={{productId}} >
+                    {{productName}}
+                  </td>
+                  <td>{{qty}}qty</td>
+                  <td class="text-right">
+                    <div class="price" value="price">
+                      {{price}}
+                    </div>
+                    </td>
+                </tr>
+                {{/each}}
+
+              </tbody>
+
+               {{!-- 總價 --}}
+              <tfoot>
+                <tr>
+                  <td colspan="4" class="text-right font-weight-bold alert-danger">Total Amount </td>
+                  <td class="text-right">
+                    <div id="total-value">
+
+                    </div>
+                  </td>
+                </tr>  
+              </tfoot>
+
+            </table>
+
+
+
+
+
+
+
+
+      {{!-- {{>_shoptable}} --}}
+        </div>
+      </div>
+      <div style="display: flex; justify-content: flex-end;" id="confirm-btn">
+        <a href="/shoppingCart/confirm" class='btn btn-success'>Confirm</a>
+      </div>
+      {{!-- {{>_buyButton}} --}}
+
+    </div>
+  </div>
+  
+  </section>
+  {{else}}
+  <section>
+  <div class="container mt-5">
+    <h1 class=" text-center mb-4 h1">Shopping Cart</h1>
+    <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header d-flex align-items-end" id="headingOne"></div>
+        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample" style="text-align: center;">
+          You don't have any item yet
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  </section>
+  
+  {{/if}}
+
+  <script>
+    const additionalFee = document.getElementById("additional-fee");
+    const price = document.querySelectorAll(".price");
+    const finalFee = document.getElementById('total-value');
+
+    let newTotalFee = 0;
+    for(let i = 0; i < price.length; i++) {
+      newTotalFee = newTotalFee + Number(price[i].innerText);
+      price[i].innerText = `$${price[i].innerText}`
+    }
+
+    finalFee.innerText = `$${newTotalFee}`;
+    if (price.length === 0) {
+      additionalFee.innerText = '';
+      finalFee.innerText = '';
+      document.getElementById("table").style.display = "none";
+      document.getElementById("confirm-btn").style.display = "none";
+    }
+  </script>
+  

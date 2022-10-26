@@ -1,0 +1,39 @@
+<h1>Warehouse All Items</h1>
+<div class="d-flex justify-content-end">
+   <a href="/admin">
+      <div class="btn btn-primary">Go Back</div>
+    </a>
+</div>
+<div class="container">
+  {{#each allRecord}}
+    {{!-- <form action="/admin/warehouse/{{_id}}?_method=PUT"
+    method="POST"> --}}
+      <div class="row justify-content-start">
+        ID:
+          <div>{{productId}}</div>
+      </div>
+      <div class="row justify-content-start">
+        Product Name:
+          <div>{{productName}}</div>
+      </div>
+      <div class="row justify-content-start">
+        Product Type:
+        <div class="">{{type}}</div>
+        ML
+      </div>
+      <div class="row justify-content-start">
+        Quantity:
+        <div class="">{{qty}}</div>
+      </div>
+      <div class="row justify-content-start">
+        Price:
+        <div class="">{{price}} $</div>
+      </div>
+      <a href="/admin/warehouse/edit/{{_id}}" class="btn btn-danger mb-1 mt-1" style="width: 145px">Update Quantity</a>
+    <form action="/admin/warehouse/{{_id}}?_method=Delete" method="POST">
+      <input type="hidden" name="_method" value="DELETE">
+      <input type="submit" class="btn btn-danger"style="width: 145px" value="Delete" >
+    </form>
+    {{!-- test --}}
+  {{/each}}
+</div>

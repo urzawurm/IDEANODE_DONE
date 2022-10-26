@@ -1,0 +1,157 @@
+<style>
+P{font-size: larger;
+  font-family:cursive;
+  font-style: oblique;
+}
+
+h3{color: rgba(159, 6, 101, 0.996);
+     font-family: fantasy;
+}
+</style>
+
+<div class="row">
+    <div class="col-md-5 mx-auto">
+        <h3 class="text-center">Admin Config</h3>
+        <form action="/admin" method="post" id="form">
+            <div class="form-group">
+
+            <div class="form-group">
+                <label for="productId">Product ID </label>
+                <select name="productId" class="form-inline form-select" id="update-select-id">
+                  <option value="1">1-Bergamot 50ml</option>
+                  <option value="2">2-Bergamot 480ml</option>
+                  <option value="3">3-Clary Sage 50ml</option>
+                  <option value="4">4-Clary Sage 480ml</option>
+                  <option value="5">5-Rose Geranium 50ml</option>
+                  <option value="6">6-Rose Geranium 480ml</option>
+                </select>
+            </div>
+
+              <div class="form-group">
+                <label for="productName">Product Name</label>
+                <select name="productName" class="form-inline form-select">
+                  <option id="name-option" value="Bergamot">Bergamot</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="qty">Store Qty</label>
+                <input 
+                    type="Number" 
+                    class="form-control" 
+                    name="qty" 
+                    value="0"
+                    min="0"
+                    max="100"
+                    autocomplete="off"
+                    id="qty-input"
+                    />
+            </div>
+            <div class="form-group" id="appear-session">
+                <label for="type">Type</label>
+                <select name="type" class="form-inline form-select" >{{!-- 產品表格 --}}
+                  <option id="type-option" value="50">50ml</option>
+                </select>
+            </div>
+            <div class="form-group" id="appear-session">
+                <label for="price">Price</label>
+                 <input 
+                    type="Number" 
+                    class="form-control" 
+                    name="price" 
+                    value="0"
+                    autocomplete="off"
+                    />
+            </div>
+
+              <div class="form-group">
+                <label for="desc">Product desc</label>
+                <select name="desc" class="form-inline form-select">
+                  <option id="desc-option" value="The fruity scent of bergamot uplifts and balances the mind and emotions. Bergamot oil has a regulating influence and can act as a relaxant, stimulant, or tonic depending on the needs of your body, mind and emotions. Bergamot promotes a cheerful and friendly attitude. Its refreshing aroma relieves fatigue.">
+                    The fruity scent of bergamot uplifts and balances the mind and emotions. Bergamot oil has a regulating influence and can act as a relaxant, stimulant, or tonic depending on the needs of your body, mind and emotions. Bergamot promotes a cheerful and friendly attitude. Its refreshing aroma relieves fatigue.
+                  </option>>
+                </select>
+                
+            </div>
+
+
+        <button type="submit" class="btn btn-success">Submit</button>
+        </form>
+        <a href="/admin/warehouse">
+          <div class="btn btn-primary">check product</div>
+        </a>
+    </div>
+</div>
+
+<script>
+  const selectedId = document.getElementById("update-select-id");
+  const appearSession = document.getElementById("appear-session");
+  const typeOption = document.getElementById("type-option");
+  const nameOption = document.getElementById("name-option");
+  const qtyInput = document.getElementById("qty-input");
+  const form = document.getElementById("form");
+  const descOption = document.getElementById("desc-option");
+  
+  selectedId.addEventListener('change', function (event){
+    if (event.target.value % 2 !== 0) {
+      typeOption.value = 50;
+      typeOption.innerText = "50ml"
+    } else {
+      typeOption.value = 480
+      typeOption.innerText = "480ml"
+    }
+
+    switch(event.target.value) {
+      case "1":
+      case "2": 
+        nameOption.value = "Bergamot";
+        nameOption.innerText = "Bergamot";
+        break;
+      case "3":
+      case "4":
+        nameOption.value = "Clary Sage";
+        nameOption.innerText = "Clary Sage";
+        break;
+      case "5":
+      case "6":
+        nameOption.value = "Rose Geranium";
+        nameOption.innerText = "Rose Geranium";
+
+      default:
+    }
+
+    switch(event.target.value) {
+      case "1":
+      case "2": 
+        descOption.value = "The fruity scent of bergamot uplifts and balances the mind and emotions. Bergamot oil has a regulating influence and can act as a relaxant, stimulant, or tonic depending on the needs of your body, mind and emotions. Bergamot promotes a cheerful and friendly attitude. Its refreshing aroma relieves fatigue.";
+        descOption.innertext = "The fruity scent of bergamot uplifts and balances the mind and emotions. Bergamot oil has a regulating influence and can act as a relaxant, stimulant, or tonic depending on the needs of your body, mind and emotions. Bergamot promotes a cheerful and friendly attitude. Its refreshing aroma relieves fatigue.";
+        break;
+      case "3":
+      case "4":
+        descOption.value = "Clary sage (Salvia sclarea) is a flowering herb that's native to the Mediterranean Basin. The essential oil that's extracted from the leaves and buds of the plant has a clean, refreshing scent that you can use as a skin balm or gently inhale as part of an aromatherapy treatment.";
+        descOption.innerText = "Clary sage (Salvia sclarea) is a flowering herb that's native to the Mediterranean Basin. The essential oil that's extracted from the leaves and buds of the plant has a clean, refreshing scent that you can use as a skin balm or gently inhale as part of an aromatherapy treatment.";
+        break;
+      case "5":
+      case "6":
+        descOption.value = "With its musky rose scent, Rose Geranium is a mood-enhancing oil that can leave you feeling balanced and calm, while naturally boosting your health. “A rose by any other name would smell as sweet.” by William Shakespearer.";
+        descOption.innerText = "With its musky rose scent, Rose Geranium is a mood-enhancing oil that can leave you feeling balanced and calm, while naturally boosting your health. “A rose by any other name would smell as sweet.” by William Shakespearer.";
+
+      default:
+    }
+
+  })
+
+  
+
+  qtyInput.addEventListener('input', function(event){
+    if (event.target.value > 100) {
+      alert("You can't input more than 100!!");
+      qtyInput.value = '100'
+    } 
+  })
+
+
+  
+
+</script>
+
